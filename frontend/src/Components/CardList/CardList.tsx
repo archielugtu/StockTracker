@@ -1,17 +1,18 @@
-import React from 'react'
-import Card from '../Card/Card'
-import { JSX } from 'react/jsx-runtime'
+import React from "react"
+import Card from "../Card/Card"
+import { JSX } from "react/jsx-runtime"
+import { CompanySearch } from "../../company"
 
 interface Props {
-
+  searchResult: CompanySearch[]
 }
 
-const CardList : React.FC<Props> = (props: Props) : JSX.Element => {
+const CardList: React.FC<Props> = ({ searchResult }: Props): JSX.Element => {
   return (
     <div>
-      <Card companyName='Apple' ticker="AAPL" price={110}/>
-      <Card companyName='Tesla' ticker="TSLA" price={10}/>
-      <Card companyName='Google' ticker="GOOG" price={20}/>
+      {searchResult.map(r => (
+        <Card companyName={r.name} ticker={r.symbol} price={99} />
+      ))}
     </div>
   )
 }
