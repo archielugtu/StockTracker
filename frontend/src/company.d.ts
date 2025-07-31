@@ -1,6 +1,6 @@
 export interface CompanySearch {
   currency: string
-  exchangeShortName: string
+  exchangeFullName: string
   name: string
   stockExchange: string
   symbol: string

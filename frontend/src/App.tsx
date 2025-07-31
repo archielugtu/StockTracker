@@ -7,7 +7,7 @@ import { searchCompanies } from "./api"
 
 function App() {
   const [search, setSearch] = useState("")
-  const [searchResult, setSearchResult] = useState<CompanySearch[]>([])
+  const [searchResults, setSearchResults] = useState<CompanySearch[]>([])
   const [serverError, setServerError] = useState<string>("")
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +19,7 @@ function App() {
     if (typeof result === "string") {
       setServerError(result)
     } else if (Array.isArray(result.data)) {
-      setSearchResult(result.data)
+      setSearchResults(result.data)
     }
   }
 
@@ -27,7 +27,7 @@ function App() {
     <div className='App'>
       <Search search={search} handleChange={handleChange} onClick={onClick} />
       {serverError && <h1>{serverError}</h1>}
-      <CardList searchResult={searchResult} />
+      <CardList searchResults={searchResults} />
     </div>
   )
 }
