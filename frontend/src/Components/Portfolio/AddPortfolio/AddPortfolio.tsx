@@ -8,7 +8,7 @@ interface Props {
 const AddPortfolio = ({ onPortfolioCreate, symbol }: Props) => {
   return (
     <form onSubmit={onPortfolioCreate}>
-      <input readOnly={true} hidden={true} value={symbol}></input>
+      <input readOnly={true} hidden={true} value={symbol} />
       <button type='submit'>Add</button>
     </form>
   )
