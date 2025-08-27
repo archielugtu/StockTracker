@@ -12,7 +12,7 @@ interface Props {
 const CardList: React.FC<Props> = ({
   searchResults,
   onPortfolioCreate,
-}: Props): JSX.Element => {
+}): JSX.Element => {
   return (
     <div>
       {searchResults.length > 1 ? (

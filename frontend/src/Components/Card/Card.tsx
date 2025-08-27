@@ -14,7 +14,7 @@ const Card: React.FC<Props> = ({
   id,
   searchResult,
   onPortfolioCreate,
-}: Props): JSX.Element => {
+}): JSX.Element => {
   return (
     <div className='card'>
       <img

@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from "react"
+import React, { JSX, SyntheticEvent } from "react"
 import DeletePortfolio from "../DeletePortfolio/DeletePortfolio"
 
 interface Props {
@@ -6,7 +6,10 @@ interface Props {
   onPortfolioDelete: (e: SyntheticEvent) => void
 }
 
-const CartPortfolio = ({ portfolioValue, onPortfolioDelete }: Props) => {
+const CartPortfolio: React.FC<Props> = ({
+  portfolioValue,
+  onPortfolioDelete,
+}): JSX.Element => {
   return (
     <>
       <h4>{portfolioValue}</h4>
