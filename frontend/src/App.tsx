@@ -5,6 +5,8 @@ import Search from "./Components/Search/Search"
 import { CompanySearch } from "./company"
 import { searchCompanies } from "./api"
 import ListPortfolio from "./Components/Portfolio/ListPortoflio/ListPortfolio"
+import NavBar from "./Components/NavBar/NavBar"
+import Hero from "./Components/Hero/Hero"
 
 function App() {
   const [search, setSearch] = useState("")
@@ -44,6 +46,8 @@ function App() {
 
   return (
     <div className='App'>
+      <NavBar />
+      <Hero />
       <Search
         search={search}
         handleSearchChange={handleSearchChange}

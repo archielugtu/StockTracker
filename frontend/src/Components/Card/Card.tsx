@@ -16,18 +16,18 @@ const Card: React.FC<Props> = ({
   onPortfolioCreate,
 }): JSX.Element => {
   return (
-    <div className='card'>
-      <img
-        src='https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg?semt=ais_hybrid&w=740'
-        alt='company logo'
-      />
-      <div className='details'>
-        <h2>
-          {searchResult.name} ({id})
-        </h2>
-        <p>{searchResult.currency}</p>
-      </div>
-      <p className='info'>{searchResult.exchangeFullName}</p>
+    <div
+      className='flex flex-col items-center justify-between w-full p-6 bg-slate-100 rounded-lg md:flex-row'
+      key={id}
+      id={id}
+    >
+      <h2 className='font-bold text-center text-black md:text-left'>
+        {searchResult.name} ({searchResult.symbol})
+      </h2>
+      <p className='text-black'>{searchResult.currency}</p>
+      <p className='font-bold text-black'>
+        {searchResult.exchangeFullName} - {searchResult.stockExchange}
+      </p>
       <AddPortfolio
         onPortfolioCreate={onPortfolioCreate}
         symbol={searchResult.symbol}
