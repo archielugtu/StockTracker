@@ -3,6 +3,7 @@ import React from "react"
 import hero from "./hero.png"
 
 import "./Hero.css"
+import { Link } from "react-router"
 
 interface Props {}
 
@@ -21,12 +22,12 @@ const Hero: React.FC<Props> = props => {
           </p>
 
           <div className='mx-auto lg:mx-0'>
-            <a
-              href=''
+            <Link
+              to='/search'
               className='py-5 px-10 text-2xl font-bold text-white bg-lightGreen rounded lg:py-4 hover:opacity-70'
             >
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
 
