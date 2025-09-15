@@ -1,5 +1,6 @@
 import React from "react"
 import { testIncomeStatementData } from "./testData"
+import { v4 as uuidv4 } from "uuid"
 
 const data = testIncomeStatementData
 
@@ -20,10 +21,13 @@ const configs = [
 const Table = (props: Props) => {
   const renderedRows = data.map(company => {
     return (
-      <tr key={company.cik}>
-        {configs.map((val: any) => {
+      <tr key={uuidv4()}>
+        {configs.map(val => {
           return (
-            <td className='p-4 whitespace-nowrap text-sm font-normal text-gray-900'>
+            <td
+              key={uuidv4()}
+              className='p-4 whitespace-nowrap text-sm font-normal text-gray-900'
+            >
               {val.render(company)}
             </td>
           )
@@ -31,16 +35,20 @@ const Table = (props: Props) => {
       </tr>
     )
   })
-  const renderedHeaders = configs.map((config: any) => {
-    return (
-      <th
-        key={config.label}
-        className='p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
-      >
-        {config.label}
-      </th>
-    )
-  })
+  const renderedHeaders = (
+    <tr>
+      {configs.map(config => {
+        return (
+          <th
+            key={config.label}
+            className='p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+          >
+            {config.label}
+          </th>
+        )
+      })}
+    </tr>
+  )
   return (
     <div className='bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8'>
       <table>
