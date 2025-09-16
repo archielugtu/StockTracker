@@ -4,7 +4,7 @@ import RatioList from "../../Components/RatioList/RatioList"
 
 interface Props {}
 
-const DesignPage = (props: Props) => {
+const DesignGuide = (props: Props) => {
   return (
     <>
       <h1>FinShark Design Page</h1>
@@ -18,4 +18,4 @@ const DesignPage = (props: Props) => {
   )
 }
 
-export default DesignPage
+export default DesignGuide
