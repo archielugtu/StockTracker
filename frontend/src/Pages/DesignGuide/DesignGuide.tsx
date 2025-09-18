@@ -1,8 +1,16 @@
 import React from "react"
 import Table from "../../Components/Table/Table"
 import RatioList from "../../Components/RatioList/RatioList"
+import { testIncomeStatementData } from "../../Components/Table/testData"
 
 interface Props {}
+
+const tableConfig = [
+  {
+    label: "Market Cap",
+    render: (company: any) => company.marketCapTTM,
+  },
+]
 
 const DesignGuide = (props: Props) => {
   return (
@@ -12,7 +20,7 @@ const DesignGuide = (props: Props) => {
         This is FinShark's design page. This is where we will house various
         design aspects of the app
       </h2>
-      <RatioList />
+      <RatioList data={testIncomeStatementData} config={tableConfig} />
       <Table />
     </>
   )
