@@ -1,28 +1,16 @@
 import React from "react"
-import { testIncomeStatementData } from "./testData"
 import { v4 as uuidv4 } from "uuid"
 
-const data = testIncomeStatementData
+interface Props {
+  config: any
+  data: any
+}
 
-interface Props {}
-
-type Company = (typeof data)[0]
-const configs = [
-  {
-    label: "Year",
-    render: (company: Company) => company.acceptedDate,
-  },
-  {
-    label: "Cost of Revenue",
-    render: (company: Company) => company.costOfRevenue,
-  },
-]
-
-const Table = (props: Props) => {
-  const renderedRows = data.map(company => {
+const Table = ({ config, data }: Props) => {
+  const renderedRows = data.map((company: any) => {
     return (
       <tr key={uuidv4()}>
-        {configs.map(val => {
+        {config.map((val: any) => {
           return (
             <td
               key={uuidv4()}
@@ -37,13 +25,13 @@ const Table = (props: Props) => {
   })
   const renderedHeaders = (
     <tr>
-      {configs.map(config => {
+      {config.map((c: any) => {
         return (
           <th
-            key={config.label}
+            key={c.label}
             className='p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
           >
-            {config.label}
+            {c.label}
           </th>
         )
       })}

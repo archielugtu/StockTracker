@@ -53,7 +53,7 @@ export const getKeyMetrics = async (query: string) => {
 export const getIncomeStatement = async (query: string) => {
   try {
     const data = await axios.get<CompanyIncomeStatement[]>(
-      `https://financialmodelingprep.com/stable/income-statement?symbol=${query}&limit=40&apikey=${process.env.REACT_APP_API_KEY}`
+      `https://financialmodelingprep.com/stable/income-statement?symbol=${query}&apikey=${process.env.REACT_APP_API_KEY}`
     )
     return data
   } catch (error: any) {
