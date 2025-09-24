@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react"
-import { CompanyCashFlow } from "../../company"
+import { CompanyCashFlow } from "../../Types/company"
 import { useOutletContext } from "react-router"
 import { getCashflowStatement } from "../../api"
 import Table from "../Table/Table"
 import Spinner from "../Spinner/Spinner"
+import { OutletContextType } from "../../Types/Outlet"
 
 type Props = {}
 
@@ -41,7 +42,7 @@ const config = [
 ]
 
 const CashflowStatement = (props: Props) => {
-  const ticker = useOutletContext<string>()
+  const { ticker } = useOutletContext<OutletContextType>()
   const [cashflowStatement, setCashflowStatement] =
     useState<CompanyCashFlow[]>()
   useEffect(() => {

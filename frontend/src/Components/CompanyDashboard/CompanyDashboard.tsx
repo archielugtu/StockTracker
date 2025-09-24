@@ -4,9 +4,10 @@ import { Outlet } from "react-router"
 interface Props {
   children: React.ReactNode
   ticker: string
+  companyDescription: string
 }
 
-const CompanyDashboard = ({ children, ticker }: Props) => {
+const CompanyDashboard = ({ children, ticker, companyDescription }: Props) => {
   return (
     <div className='relative md:ml-64 bg-blueGray-100 w-full'>
       <div className='relative pt-20 pb-32 bg-lightBlue-500'>
@@ -14,7 +15,9 @@ const CompanyDashboard = ({ children, ticker }: Props) => {
           <div>
             <div className='flex flex-wrap'>{children}</div>
             {/* The Outlet component acts as a placeholder used to render the children components as defined Router.tsx. Context prop allows parent to pass data to child components */}
-            <div className='flex flex-wrap'>{<Outlet context={ticker} />}</div>
+            <div className='flex flex-wrap'>
+              {<Outlet context={{ ticker, companyDescription }} />}
+            </div>
           </div>
         </div>
       </div>

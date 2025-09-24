@@ -6,7 +6,7 @@ import {
   CompanyKeyMetrics,
   CompanyProfile,
   CompanySearch,
-} from "./company"
+} from "./Types/company"
 
 interface SearchResponse {
   data: CompanySearch

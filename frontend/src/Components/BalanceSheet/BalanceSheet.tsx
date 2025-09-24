@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react"
-import { CompanyBalanceSheet } from "../../company"
+import { CompanyBalanceSheet } from "../../Types/company"
 import { useOutletContext } from "react-router-dom"
 import { getBalanceSheet } from "../../api"
 import RatioList from "../RatioList/RatioList"
 import Spinner from "../Spinner/Spinner"
+import { OutletContextType } from "../../Types/Outlet"
 
 interface Props {}
 
@@ -63,7 +64,7 @@ const config = [
 ]
 
 const BalanceSheet = (props: Props) => {
-  const ticker = useOutletContext<string>()
+  const { ticker } = useOutletContext<OutletContextType>()
   const [balanceSheet, setBalanceSheet] = useState<CompanyBalanceSheet>()
 
   useEffect(() => {

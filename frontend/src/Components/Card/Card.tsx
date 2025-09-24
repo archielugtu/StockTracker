@@ -1,7 +1,7 @@
 import React, { SyntheticEvent } from "react"
 import "./Card.css"
 import { JSX } from "react/jsx-runtime"
-import { CompanySearch } from "../../company"
+import { CompanySearch } from "../../Types/company"
 import AddPortfolio from "../Portfolio/AddPortfolio/AddPortfolio"
 import { Link } from "react-router"
 
