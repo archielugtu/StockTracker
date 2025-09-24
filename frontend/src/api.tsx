@@ -11,11 +11,12 @@ import {
 interface SearchResponse {
   data: CompanySearch
 }
+const apiKey = import.meta.env.VITE_API_KEY
 
 export const searchCompanies = async (query: string) => {
   try {
     const data = await axios.get<SearchResponse>(
-      `https://financialmodelingprep.com/stable/search-symbol?query=${query}&apikey=${process.env.REACT_APP_API_KEY}`
+      `https://financialmodelingprep.com/stable/search-symbol?query=${query}&apikey=${apiKey}`
     )
     return data
   } catch (error) {
@@ -33,7 +34,7 @@ export const searchCompanies = async (query: string) => {
 export const getCompanyProfile = async (query: string) => {
   try {
     const data = await axios.get<CompanyProfile[]>(
-      `https://financialmodelingprep.com/stable/profile?symbol=${query}&apikey=${process.env.REACT_APP_API_KEY}`
+      `https://financialmodelingprep.com/stable/profile?symbol=${query}&apikey=${apiKey}`
     )
     return data
   } catch (error: any) {
@@ -44,7 +45,7 @@ export const getCompanyProfile = async (query: string) => {
 export const getKeyMetrics = async (query: string) => {
   try {
     const data = await axios.get<CompanyKeyMetrics[]>(
-      `https://financialmodelingprep.com/stable/key-metrics-ttm?symbol=${query}&apikey=${process.env.REACT_APP_API_KEY}`
+      `https://financialmodelingprep.com/stable/key-metrics-ttm?symbol=${query}&apikey=${apiKey}`
     )
     return data
   } catch (error: any) {
@@ -55,7 +56,7 @@ export const getKeyMetrics = async (query: string) => {
 export const getIncomeStatement = async (query: string) => {
   try {
     const data = await axios.get<CompanyIncomeStatement[]>(
-      `https://financialmodelingprep.com/stable/income-statement?symbol=${query}&apikey=${process.env.REACT_APP_API_KEY}`
+      `https://financialmodelingprep.com/stable/income-statement?symbol=${query}&apikey=${apiKey}`
     )
     return data
   } catch (error: any) {
@@ -66,7 +67,7 @@ export const getIncomeStatement = async (query: string) => {
 export const getBalanceSheet = async (query: string) => {
   try {
     const data = await axios.get<CompanyBalanceSheet[]>(
-      `https://financialmodelingprep.com/stable/balance-sheet-statement?symbol=${query}&apikey=${process.env.REACT_APP_API_KEY}`
+      `https://financialmodelingprep.com/stable/balance-sheet-statement?symbol=${query}&apikey=${apiKey}`
     )
     return data
   } catch (error: any) {
@@ -77,7 +78,7 @@ export const getBalanceSheet = async (query: string) => {
 export const getCashflowStatement = async (query: string) => {
   try {
     const data = await axios.get<CompanyCashFlow[]>(
-      `https://financialmodelingprep.com/stable/cash-flow-statement?symbol=${query}&apikey=${process.env.REACT_APP_API_KEY}`
+      `https://financialmodelingprep.com/stable/cash-flow-statement?symbol=${query}&apikey=${apiKey}`
     )
     return data
   } catch (error: any) {
