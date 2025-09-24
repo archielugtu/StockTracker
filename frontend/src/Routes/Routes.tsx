@@ -6,6 +6,7 @@ import SearchPage from "../Pages/SearchPage/SearchPage"
 import CompanyProfile from "../Components/CompanyProfile/CompanyProfile"
 import IncomeStatements from "../Components/IncomeStatements/IncomeStatements"
 import DesignGuide from "../Pages/DesignGuide/DesignGuide"
+import BalanceSheet from "../Components/BalanceSheet/BalanceSheet"
 
 //browser router - a factory that creates routes
 export const router = createBrowserRouter([
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
         children: [
           { path: "company-profile", element: <CompanyProfile /> },
           { path: "income-statement", element: <IncomeStatements /> },
+          { path: "balance-sheet", element: <BalanceSheet /> },
         ],
       },
     ],

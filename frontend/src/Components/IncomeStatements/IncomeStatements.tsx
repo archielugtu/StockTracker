@@ -54,7 +54,6 @@ const IncomeStatements = (props: Props) => {
   useEffect(() => {
     const incomeStatementFetch = async () => {
       const result = await getIncomeStatement(ticker)
-      console.log(result)
       setIncomeStatement(result!.data)
     }
     incomeStatementFetch()
