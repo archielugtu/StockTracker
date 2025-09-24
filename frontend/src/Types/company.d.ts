@@ -309,3 +309,15 @@ export interface CompanyKeyMetrics {
   debtToMarketCapTTM: number
   returnOnAssetsTTM: number
 }
+
+export interface CompanyComparableStock {
+  symbol: string
+  companyName: string
+  price: number
+  mktCap: number
+}
+
+export interface CompanyComparableStocks {
+  symbol: string
+  peersList: CompanyComparableStocks[]
+}

@@ -38,8 +38,8 @@ const Table = ({ config, data }: Props) => {
     </tr>
   )
   return (
-    <div className='bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8'>
-      <table>
+    <div className='bg-white shadow rounded-lg m-4 p-4 sm:p-6 xl:p-8 w-full'>
+      <table className='w-full'>
         <thead className='min-d-full divide-y divide=gray-200 m-5'>
           {renderedHeaders}
         </thead>

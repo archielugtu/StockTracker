@@ -2,6 +2,7 @@ import axios from "axios"
 import {
   CompanyBalanceSheet,
   CompanyCashFlow,
+  CompanyComparableStock,
   CompanyIncomeStatement,
   CompanyKeyMetrics,
   CompanyProfile,
@@ -39,6 +40,7 @@ export const getCompanyProfile = async (query: string) => {
     return data
   } catch (error: any) {
     console.log("error message from API: ", error.message)
+    throw error
   }
 }
 
@@ -50,6 +52,7 @@ export const getKeyMetrics = async (query: string) => {
     return data
   } catch (error: any) {
     console.log("error message: ", error.message)
+    throw error
   }
 }
 
@@ -61,6 +64,7 @@ export const getIncomeStatement = async (query: string) => {
     return data
   } catch (error: any) {
     console.log("error message: ", error.message)
+    throw error
   }
 }
 
@@ -72,6 +76,7 @@ export const getBalanceSheet = async (query: string) => {
     return data
   } catch (error: any) {
     console.log("error message: ", error.message)
+    throw error
   }
 }
 
@@ -83,5 +88,18 @@ export const getCashflowStatement = async (query: string) => {
     return data
   } catch (error: any) {
     console.log("error message: ", error.message)
+    throw error
+  }
+}
+
+export const getComparableStocks = async (query: string) => {
+  try {
+    const data = await axios.get<CompanyComparableStock[]>(
+      `https://financialmodelingprep.com/stable/stock-peers?symbol=${query}&apikey=${apiKey}`
+    )
+    return data
+  } catch (error: any) {
+    console.log("error message: ", error.message)
+    throw error
   }
 }
