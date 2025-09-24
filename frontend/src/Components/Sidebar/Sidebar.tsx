@@ -1,6 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { FaHome } from "react-icons/fa"
+import { FaHome, FaTable } from "react-icons/fa"
+import { BiSpreadsheet } from "react-icons/bi"
+import { IoIosCash } from "react-icons/io"
 
 interface Props {}
 
@@ -25,21 +27,21 @@ const SideBar = (props: Props) => {
               to='income-statement'
               className='flex md:min-w-full text-blueGray-500 text-medium uppercase font-bold block pt-1 pb-4 no-underline'
             >
-              <FaHome />
+              <FaTable />
               <h6 className='ml-3'>Income Statement</h6>
             </Link>
             <Link
               to='balance-sheet'
               className='flex md:min-w-full text-blueGray-500 text-medium uppercase font-bold block pt-1 pb-4 no-underline'
             >
-              <FaHome />
+              <BiSpreadsheet />
               <h6 className='ml-3'>Balance Sheet</h6>
             </Link>
             <Link
               to='cashflow-statement'
               className='flex md:min-w-full text-blueGray-500 text-medium uppercase font-bold block pt-1 pb-4 no-underline'
             >
-              <FaHome />
+              <IoIosCash />
               <h6 className='ml-3'>Cashflow Statement</h6>
             </Link>
           </div>
