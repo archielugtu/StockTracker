@@ -68,5 +68,7 @@ export const getBalanceSheet = async (query: string) => {
       `https://financialmodelingprep.com/stable/balance-sheet-statement?symbol=${query}&apikey=${process.env.REACT_APP_API_KEY}`
     )
     return data
-  } catch (error: any) {}
+  } catch (error: any) {
+    console.log("error message: ", error.message)
+  }
 }
