@@ -4,7 +4,11 @@ import { useOutletContext } from "react-router-dom"
 import { getKeyMetrics } from "../../api"
 import RatioList from "../RatioList/RatioList"
 import Spinner from "../Spinner/Spinner"
-import { OutletContextType } from "../../Types/Outlet"
+import { OutletContextType } from "../../Types/outlet"
+import {
+  formatLargeNonMonetaryNumber,
+  formatRatio,
+} from "../../Helpers/NumberFormatting"
 
 interface Props {}
 
@@ -12,29 +16,44 @@ interface Props {}
 const tableConfig = [
   {
     label: "Market Cap",
-    subTitle: "Total value of all outstanding shares — shows company size",
-    render: (company: CompanyKeyMetrics) => company.marketCap,
+    render: (company: CompanyKeyMetrics) =>
+      formatLargeNonMonetaryNumber(company.marketCap),
+    subTitle: "Total value of all a company's shares of stock",
+  },
+  {
+    label: "P/E Ratio",
+    render: (company: CompanyKeyMetrics) =>
+      formatLargeNonMonetaryNumber(1 / company.earningsYieldTTM),
+    subTitle:
+      "Amount investors are willing to pay for each dollar of a company's earnings",
   },
   {
     label: "Current Ratio",
-    subTitle: "Liquidity — ability to cover short-term obligations",
-    render: (company: CompanyKeyMetrics) => company.currentRatioTTM,
+    render: (company: CompanyKeyMetrics) =>
+      formatRatio(company.currentRatioTTM),
+    subTitle:
+      "Measures the companies ability to pay short term debt obligations",
   },
   {
     label: "Return On Equity",
-    subTitle: "Profitability — returns generated from shareholders’ equity",
-    render: (company: CompanyKeyMetrics) => company.returnOnEquityTTM,
-  },
-  {
-    label: "Return on Assets",
-    subTitle: "Efficiency — profit generated from total assets",
-    render: (company: CompanyKeyMetrics) => company.returnOnAssetsTTM,
-  },
-  {
-    label: "Current Ratio",
+    render: (company: CompanyKeyMetrics) =>
+      formatRatio(company.returnOnEquityTTM),
     subTitle:
-      "Liquidity check — repeated here (consider replacing with another metric)",
-    render: (company: CompanyKeyMetrics) => company.currentRatioTTM,
+      "Return on equity is the measure of a company's net income divided by its shareholder's equity",
+  },
+  {
+    label: "Return On Assets",
+    render: (company: CompanyKeyMetrics) =>
+      formatRatio(company.returnOnTangibleAssetsTTM),
+    subTitle:
+      "Return on assets is the measure of how effective a company is using its assets",
+  },
+  {
+    label: "Graham Number",
+    render: (company: CompanyKeyMetrics) =>
+      formatRatio(company.grahamNumberTTM),
+    subTitle:
+      "This is the upperbound of the price range that a defensive investor should pay for a stock",
   },
 ]
 
