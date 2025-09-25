@@ -1,0 +1,64 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# ==============================
+# Visual Studio / IDE
+# ==============================
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ==============================
+# .NET / C# build outputs
+# ==============================
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+*.vsix
+TestResults/
+*.nupkg
+
+# ==============================
+# Rider / JetBrains IDE
+# ==============================
+.idea/
+*.iml
+
+
+# ==============================
+# Node / Frontend (React)
+# ==============================
+node_modules/
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+dist/
+build/
+
+# ==============================
+# OS generated files
+# ==============================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.env
