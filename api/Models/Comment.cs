@@ -7,7 +7,7 @@
         public string Content{ get; set; } = string.Empty;
         public DateTime CreatedOn { get; set; } = DateTime.Now;
         public int? StockId { get; set; }
-        //Navigation property allows us to navigate into the stock model from the comment
+        //Navigation property allows us to navigate into the stock model from the comment model 
         public Stock? Stock { get; set; }
     }
 }
