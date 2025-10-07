@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace api.Dto
+namespace api.Dto.Stock
 {
     public class StockDto
     {

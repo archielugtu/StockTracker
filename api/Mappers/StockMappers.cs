@@ -1,4 +1,4 @@
-﻿using api.Dto;
+﻿using api.Dto.Stock;
 using api.Models;
 
 namespace api.Mappers
@@ -9,6 +9,7 @@ namespace api.Mappers
         {
             return new StockDto
             {
+                Id = stock.Id,
                 Symbol = stock.Symbol,
                 CompanyName = stock.CompanyName,
                 Purchase = stock.Purchase,
