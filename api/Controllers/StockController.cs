@@ -19,14 +19,14 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<IEnumerable<StockDto>>> GetAll()
         {
             var stocks = await _context.Stocks.ToListAsync();
             return Ok(stocks.Select(s => s.ToStockDto()));
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        public async Task<ActionResult<StockDto>> GetById([FromRoute] int id)
         {
             var stockModel = await _context.Stocks.FindAsync(id);
             if (stockModel == null) return NotFound();
@@ -43,10 +43,10 @@ namespace api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto stockDto)
+        public async Task<ActionResult<StockDto>> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto stockDto)
         {
             var stockModel = await _context.Stocks.FindAsync(id);
-            if (stockModel == null) return NotFound();
+            if (stockModel == null) return NotFound();ret
             stockDto.UpdateStockModel(stockModel);
             await _context.SaveChangesAsync();
             return Ok(stockModel.ToStockDto());
