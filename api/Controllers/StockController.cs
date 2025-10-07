@@ -51,5 +51,15 @@ namespace api.Controllers
             await _context.SaveChangesAsync();
             return Ok(stockModel.ToStockDto());
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var stockModel = await _context.Stocks.FindAsync(id);
+            if (stockModel == null) return NotFound();
+            _context.Stocks.Remove(stockModel);
+            await _context.SaveChangesAsync();
+            return NoContent(); //204
+        }
     }
 }
