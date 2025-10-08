@@ -10,6 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Register controllers
 builder.Services.AddControllers();
 
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles; //ignores object cyclic error with JSON
+    options.JsonSerializerOptions.WriteIndented = true; //formats json nicely
+});
+
 // Register Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

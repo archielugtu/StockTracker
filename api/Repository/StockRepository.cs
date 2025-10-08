@@ -15,9 +15,9 @@ namespace api.Repository
             _context = context;
         }
 
-        public async Task<List<Stock>> GetAllAsync() => await _context.Stocks.ToListAsync();
+        public async Task<List<Stock>> GetAllAsync() => await _context.Stocks.Include(s => s.Comments).ToListAsync();
 
-        public async Task<Stock?> GetByIdAsync(int id) => await _context.Stocks.FindAsync(id);
+        public async Task<Stock?> GetByIdAsync(int id) => await _context.Stocks.Include(s => s.Comments).FirstOrDefaultAsync(x => x.Id == id); //.FindAsync() doesn't work alongside queries
 
         public async Task<Stock?> CreateAsync(Stock stockModel)
         {
