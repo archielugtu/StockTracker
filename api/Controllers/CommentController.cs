@@ -32,7 +32,7 @@ namespace api.Controllers
         public async Task<ActionResult<CommentDto>> GetById([FromRoute] int id)
         {
             var commentModel = await _commentRepo.GetByIdAsync(id);
-            if (commentModel == null) return NotFound();
+            if (commentModel == null) return NotFound($"Comment {id} does not exist.");
             return Ok(commentModel.ToCommentDto());
         }
 
@@ -43,6 +43,14 @@ namespace api.Controllers
             var commentModel = commentDto.ToCommentFromCreateDto(stockId);
             await _commentRepo.CreateAsync(commentModel);
             return CreatedAtAction(nameof(GetById), new { id = commentModel.Id },  commentDto);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var commentModel = await _commentRepo.DeleteAsync(id);
+            if (commentModel == null) return NotFound($"Comment {id} does not exist.");
+            return NoContent();
         }
     }
 }
