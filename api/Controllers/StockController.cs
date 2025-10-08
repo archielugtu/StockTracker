@@ -12,12 +12,10 @@ namespace api.Controllers
     [ApiController] //tells ASP.NET Core that this controller responds to web API requests not MVC views
     public class StockController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
         private readonly IStockRepository _stockRepo;
 
-        public StockController(ApplicationDbContext context, IStockRepository stockRepo)
+        public StockController(IStockRepository stockRepo)
         {
-            _context = context;
             _stockRepo = stockRepo;
         }
 
