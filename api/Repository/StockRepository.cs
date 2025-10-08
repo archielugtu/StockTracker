@@ -43,5 +43,7 @@ namespace api.Repository
             await _context.SaveChangesAsync();
             return stockModel;
         }
+
+        public async Task<bool> StockExistAsync(int id) => await _context.Stocks.AnyAsync(s => s.Id == id);
     }
 }
