@@ -22,6 +22,8 @@ namespace api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<StockDto>>> GetAll()
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var stocks = await _stockRepo.GetAllAsync();
             return Ok(stocks.Select(s => s.ToStockDto()));
         }
@@ -29,6 +31,8 @@ namespace api.Controllers
         [HttpGet("{id:int}")]
         public async Task<ActionResult<StockDto>> GetById([FromRoute] int id)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var stockModel = await _stockRepo.GetByIdAsync(id);
             if (stockModel == null) return NotFound($"Stock {id} does not exist.");
             return Ok(stockModel.ToStockDto());
@@ -37,6 +41,8 @@ namespace api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateStockRequestDto stockDto)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             Stock stockModel = stockDto.ToStockFromCreateDto();
             await _stockRepo.CreateAsync(stockModel);
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
@@ -45,6 +51,8 @@ namespace api.Controllers
         [HttpPut("{id:int}")]
         public async Task<ActionResult<StockDto>> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto stockDto)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var stockModel = await _stockRepo.UpdateAsync(id, stockDto);
             if (stockModel == null) return NotFound($"Stock {id} does not exist.");
             return Ok(stockModel.ToStockDto());
@@ -53,6 +61,8 @@ namespace api.Controllers
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var stockModel = await _stockRepo.DeleteAsync(id);
             if (stockModel == null) return NotFound($"Stock {id} does not exist.");
             return NoContent(); //204
