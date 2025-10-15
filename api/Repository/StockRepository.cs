@@ -1,4 +1,5 @@
-﻿using api.Data;
+﻿using api.Common;
+using api.Data;
 using api.Dto.Stock;
 using api.Helpers;
 using api.Interfaces;
@@ -30,15 +31,18 @@ namespace api.Repository
                 stocks = stocks.Where(s => s.CompanyName.Contains(query.CompanyName));
             }
 
-            if (!string.IsNullOrWhiteSpace(query.SortBy))
+            if (query.StocksSortBy != GlobalEnums.StocksSortBy.None)
             {
-                if (query.SortBy.Equals("Symbol", StringComparison.OrdinalIgnoreCase))
+                if (query.StocksSortBy == GlobalEnums.StocksSortBy.Symbol)
                     stocks = query.IsDescending ? stocks.OrderByDescending(s => s.Symbol) : stocks.OrderBy(s => s.Symbol);
-                else if (query.SortBy.Equals("CompanyName", StringComparison.OrdinalIgnoreCase))
+
+                if (query.StocksSortBy == GlobalEnums.StocksSortBy.CompanyName)
                     stocks = query.IsDescending ? stocks.OrderByDescending(s => s.CompanyName) : stocks.OrderBy(s => s.CompanyName);
             }
 
-            return await stocks.ToListAsync();
+            var skipPages = (query.PageNumber - 1) * query.PageSize;
+
+            return await stocks.Skip(skipPages).Take(query.PageSize).ToListAsync();
         }
 
         public async Task<Stock?> GetByIdAsync(int id) => await _context.Stocks.Include(s => s.Comments).FirstOrDefaultAsync(x => x.Id == id); //.FindAsync() doesn't work alongside queries

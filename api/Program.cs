@@ -2,6 +2,7 @@ using api.Data;
 using api.Interfaces;
 using api.Repository;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles; //ignores object cyclic error with JSON
     options.JsonSerializerOptions.WriteIndented = true; //formats json nicely
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); // ensures JSON & model binding use enum names i.e., swagger
 });
 
 // Register Swagger
