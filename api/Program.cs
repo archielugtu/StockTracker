@@ -33,6 +33,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 // Register Identity - Sets up user accounts (register/login) and where to store their info.
+// Tells AppUser to use the built-in IdentityRole class to manage roles.
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
     options.Password.RequireDigit = true;
@@ -41,7 +42,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
     options.Password.RequireUppercase = true;
     options.Password.RequireNonAlphanumeric = true;
 })
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>(); // Use ApplicationDbContext to communicate with the DB to store and retrieve all user, role, and authentication data.
 
 // Set JWT tokens as the default method for authentication
 builder.Services.AddAuthentication(options =>
