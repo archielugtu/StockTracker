@@ -1,4 +1,5 @@
 ﻿using api.Dto.Account;
+using api.Interfaces;
 using api.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +12,12 @@ namespace api.Controllers
     {
         // Offered by AspNetCore.Identity to remove overhead of rewriting user authentication/authorization logic
         private readonly UserManager<AppUser> _userManager;
+        private readonly ITokenService _tokenService;
 
-        public AccountController(UserManager<AppUser> userManager)
+        public AccountController(UserManager<AppUser> userManager, ITokenService tokenService)
         {
             _userManager = userManager;
+            _tokenService = tokenService;
         }
 
         [HttpPost]
@@ -37,7 +40,14 @@ namespace api.Controllers
                     // Similar to _userManager.CreateAsync. Pass in the role we want to assign to user on register.
                     var roleResult = await _userManager.AddToRoleAsync(appUser, "User");
                     if (roleResult.Succeeded)
-                        return Ok("User created");
+                        return Ok(
+                            new NewUserDto
+                            {
+                                UserName = appUser.UserName,
+                                Email = appUser.Email,
+                                Token = _tokenService.CreateToken(appUser)
+                            }
+                        );
                     else
                         return StatusCode(500, roleResult.Errors); // or can also return BadRequest
                 }
