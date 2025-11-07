@@ -101,6 +101,8 @@ builder.Services.AddAuthentication(options =>
 // Register Repositories
 builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
 
 // Register CORS
 builder.Services.AddCors(option =>
