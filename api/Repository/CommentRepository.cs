@@ -15,9 +15,9 @@ namespace api.Repository
             _context = context;
         }
 
-        public async Task<List<Comment>> GetAllAsync() => await _context.Comments.ToListAsync();
+        public async Task<List<Comment>> GetAllAsync() => await _context.Comments.Include(c => c.AppUser).ToListAsync();
 
-        public async Task<Comment?> GetByIdAsync(int id) => await _context.Comments.FindAsync(id);
+        public async Task<Comment?> GetByIdAsync(int id) => await _context.Comments.Include(c => c.AppUser).FirstOrDefaultAsync(c => c.Id == id);
 
         public async Task<Comment?> CreateAsync(Comment commentModel)
         {

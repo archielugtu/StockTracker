@@ -28,7 +28,7 @@ namespace api.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             List<Stock> stocks = await _stockRepo.GetAllAsync(query);
-            return Ok(stocks.Select(s => s.ToStockDto()));
+            return Ok(stocks.Select(s => s.ToStockDto()).ToList());
         }
 
         [HttpGet("{id:int}")]
