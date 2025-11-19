@@ -45,7 +45,15 @@ namespace api.Repository
             return await stocks.Skip(skipPages).Take(query.PageSize).ToListAsync();
         }
 
-        public async Task<Stock?> GetByIdAsync(int id) => await _context.Stocks.Include(s => s.Comments).FirstOrDefaultAsync(x => x.Id == id); //.FindAsync() doesn't work alongside queries
+        public async Task<Stock?> GetByIdAsync(int id)
+        {
+            return await _context.Stocks.Include(s => s.Comments).FirstOrDefaultAsync(x => x.Id == id); //.FindAsync() doesn't work alongside queries
+        }
+
+        public async Task<Stock?> GetBySymbolAsync(string symbol)
+        {
+            return await _context.Stocks.FirstOrDefaultAsync(s => s.Symbol == symbol);
+        }
 
         public async Task<Stock?> CreateAsync(Stock stockModel)
         {
