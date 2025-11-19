@@ -12,6 +12,7 @@ namespace api.Controllers
     [ApiController]
     public class PortfolioController : ControllerBase
     {
+        // Offered by AspNetCore.Identity to remove overhead of rewriting user authentication/authorization logic
         private readonly UserManager<AppUser> _userManager;
         private readonly IStockRepository _stockRepo;
         private readonly IPortfolioRepository _portfolioRepo;
@@ -27,9 +28,9 @@ namespace api.Controllers
         [Authorize]
         public async Task<IActionResult> GetUserPortfolio()
         {
-            var username = User.GetUsername(); // From ClaimsExtensions.cs
-            var appUser = await _userManager.FindByNameAsync(username);
-            var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser);
+            string username = User.GetUsername(); // User of type ClaimsPrincipal which is inherited from the ControllerBase. GetUserName is derived from ClaimsExtensions.cs
+            AppUser? appUser = await _userManager.FindByNameAsync(username);
+            List<Stock> userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser);
             return Ok(userPortfolio);
         }
     }
