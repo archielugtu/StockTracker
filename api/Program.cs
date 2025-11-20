@@ -101,8 +101,10 @@ builder.Services.AddAuthentication(options =>
 // Register Repositories
 builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
-builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IFMPService, FMPService>();
+builder.Services.AddHttpClient<IFMPService, FMPService>(); //specifically provides the httpclient dependency for FMPService.cs
 
 // Register CORS
 builder.Services.AddCors(option =>
