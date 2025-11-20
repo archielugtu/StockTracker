@@ -28,6 +28,7 @@ namespace api.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<CommentDto>>> GetAll([FromQuery] CommentQueryObject commentQueryObject)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
