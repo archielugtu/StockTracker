@@ -1,5 +1,6 @@
 ﻿using api.Dto.Comment;
 using api.Extensions;
+using api.Helpers;
 using api.Interfaces;
 using api.Mappers;
 using api.Models;
@@ -27,11 +28,11 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CommentDto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<CommentDto>>> GetAll([FromQuery] CommentQueryObject commentQueryObject)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var comments = await _commentRepo.GetAllAsync();
+            var comments = await _commentRepo.GetAllAsync(commentQueryObject);
             var commentsDto = comments.Select(c => c.ToCommentDto());
             return Ok(commentsDto);
         }

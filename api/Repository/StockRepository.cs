@@ -19,7 +19,7 @@ namespace api.Repository
 
         public async Task<List<Stock>> GetAllAsync(QueryObject query)
         {
-            IQueryable<Stock> stocks = _context.Stocks.Include(s => s.Comments).ThenInclude(c => c.AppUser).AsQueryable();
+            IQueryable<Stock> stocks = _context.Stocks.Include(s => s.Comments).ThenInclude(c => c.AppUser).AsQueryable(); //allows LINQ queries to be executed against a database without actually calling it yet
 
             if (!string.IsNullOrWhiteSpace(query.Symbol))
             {
@@ -42,7 +42,7 @@ namespace api.Repository
 
             var skipPages = (query.PageNumber - 1) * query.PageSize;
 
-            return await stocks.Skip(skipPages).Take(query.PageSize).ToListAsync();
+            return await stocks.Skip(skipPages).Take(query.PageSize).ToListAsync(); //actully executes the query against the database and retrieves the results as a list
         }
 
         public async Task<Stock?> GetByIdAsync(int id)
