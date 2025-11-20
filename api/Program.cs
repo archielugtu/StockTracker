@@ -111,9 +111,11 @@ builder.Services.AddCors(option =>
 {
     option.AddDefaultPolicy(policy =>
     {
-        policy.AllowAnyOrigin(); // TODO - replace this with frontend URL once hosted
         policy.AllowAnyHeader();
         policy.AllowAnyMethod();
+        policy.AllowCredentials();
+        policy.AllowAnyOrigin(); // TODO - replace this with frontend URL once hosted
+        //policy.WithOrigins("https://localhost:44351"); //when deployed
     });
 });
 
